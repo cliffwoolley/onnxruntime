@@ -44,8 +44,6 @@ class JsonConfigParser {
 
   Status ParseRunOptionsFromModelProto(/*out*/ RunOptions& run_options);
 
-  Status ParseTuningResultsFromModelProto(/*out*/ std::vector<TuningResults>& results);
-
  private:
   // Logger instance that will be used to log events along the parsing steps
   const logging::Logger& logger_;
@@ -59,6 +57,9 @@ class JsonConfigParser {
   // Flag indicating if an ort config json is available to be used
   bool is_ort_config_json_available_ = false;
 };
+
+Status ParseTuningResultsFromModelMetadata(const onnxruntime::ModelMetadata& metadata,
+                                           std::vector<TuningResults>& results);
 
 #endif  // !defined(ORT_MINIMAL_BUILD)
 
